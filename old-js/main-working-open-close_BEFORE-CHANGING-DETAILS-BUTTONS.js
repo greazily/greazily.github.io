@@ -1,21 +1,19 @@
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, Flip);
 
 
 let sections = gsap.utils.toArray("#panel"),
     container = document.querySelector(".container"),
+    headerGrid = document.querySelector(".header-grid"),
     gallery = document.querySelector(".gallery"),
     st,
     scrollWidth = - 25 * (sections.length - 4),
+    scrolledDistance = 0,
     division = 1 / (sections.length - 4),
     divisions = ["0.000"];
 
-
+gsap.defaults({overwrite: "auto", ease: "power2.inOut"});
 
 function mediaQuery() {
-
-    gsap.defaults({overwrite: "auto", ease: "power2.inOut"});
-    gsap.set(".btn-close-panel", {transformOrigin: "center center", scale: 0,})
-    gsap.set(".arrow", {yPercent: 200});
 
     let mobile = window.matchMedia("(max-width: 499.99px");
         
@@ -28,10 +26,10 @@ function mediaQuery() {
                 trigger: ".layout-rows",
                 pin: true, //pins the container in place
                 scrub: 1, //enables the user to scroll as a means of moving the animation backward or forward or stay still
-                // markers: true, //for testing the scrolltrigger clearly visializing where the animation takes place
+                markers: true, //for testing the scrolltrigger clearly visializing where the animation takes place
                 end: ()=> sections[0].offsetWidth * (sections.length - 4),
                 invalidateOnRefresh: true, //recaltulates start and end points when refreshed
-                // onUpdate: self => console.log(self.progress.toFixed(3)) //prints to console the progress of the scrolltrigger animation between 0 and 1
+                onUpdate: self => console.log(self.progress.toFixed(3)) //prints to console the progress of the scrolltrigger animation between 0 and 1
             }
         });   
     }
@@ -40,8 +38,12 @@ function mediaQuery() {
 
     sections.forEach(section => {section.addEventListener("click", (e)=>{ //adds a click event to each panel, then executes the code on the panel that the event was triggered on
             
-        let endSection = document.querySelector(".panel.end");
-        
+        let title = section.querySelector(".title"),
+            heading = section.querySelector(".heading"),
+            endSection = document.querySelector(".panel.end");
+            
+
+        console.log(e.target);
  
  
  
@@ -52,49 +54,37 @@ function mediaQuery() {
             if(!mobile.matches) { // ----- panel opening code for desktop -----
                 section.classList.add("active");
                 master.add(desktopScroll(section))
-                      .add(desktopOpen(section))
+                      .add(desktopOpen(title, section, heading))
                 
     
             } else { // ----- panel opening code for mobile -----
                 section.classList.add("active");
+                // title.classList.add("active");
                 endSection.style.display = "block"; //adds a spacer to end of panels enabling last panel to scroll to top of gallery
                 master.add(mobileScroll(section))
-                      .add(mobileOpen(section));
+                      .add(mobileOpen(title, section, heading));
     
             }
-        } 
-        
-        else {
+        } else {
 
             if(!mobile.matches) {
-               let contentClasses = ["cover-image", "image"],
-                   detailsClasses = ["btn-toggle-details", "arrow"];
-
-                if(contentClasses.some(contentClasses => e.target.classList.contains(contentClasses))) {
-                    let ts = st.scrollTrigger;
-                    master.add(desktopClose(section, ts));
-                    section.classList.remove("active");
+                let ts = st.scrollTrigger;
+                master.add(desktopClose(title, section, heading, ts));
+                section.classList.remove("active");
+            } else {// ----- panel closing code for mobile -----
+                // title.classList.remove("active");
+                if(e.target.classList.contains("heading")) {
+                    master.add(titleOpen(title, section, heading))
+                    
                 }
 
-                if(detailsClasses.some(detailsClasses => e.target.classList.contains(detailsClasses))) {//handles the toggling of the detail drop down
-                    master.add(detailsToggle(section));
-                }
-                
+                if(e.target.classList.contains("details")) {
+                    master.add(titleClose(title, section, heading));
 
-            } 
-            
-            else {// ----- panel closing code for mobile -----
-                
-                let detailsClasses = ["btn-toggle-details", "arrow"]
-
-                if(detailsClasses.some(detailsClasses => e.target.classList.contains(detailsClasses))) {//handles the toggling of the detail drop down
-                    master.add(detailsToggle(section));
                 }
 
-                let closeClasses = ["btn-close-panel", "cross"]
-
-                if(closeClasses.some(closeClasses => e.target.classList.contains(closeClasses))) {
-                    master.add(mobileClose(section));
+                if(e.target.classList.contains("close")) {
+                    master.add(mobileClose(title, section, heading));
                     endSection.style.display = "none";
                     section.classList.remove("active");
                 }
@@ -121,35 +111,24 @@ function desktopScroll(section) {
     return tl;
 }
 
-function desktopOpen(section) {
-    let details = section.querySelector(".details"),
-        arrow = section.querySelector(".arrow");
-
+function desktopOpen(title, section, heading) {
     let tl = gsap.timeline()
     tl.to(section, {duration: .8, width: "100%", overflow: "scroll"})
       .to(gallery, {duration: .8, height: "90%"}, "<")
-      .to(details, {duration: .4, height: "auto"})
-      .to(arrow, {duration: .4, yPercent: 0}, "-=0.3")
-
-
+      .to(title, {duration: .4, height: "200px", onStart: headingActive, onStartParams: [heading]})
     return tl;
 
 }
 
 // ----- panel closing function for desktop ----
 
-function desktopClose(section, ts) {
-    let details = section.querySelector(".details"),
-        arrow = section.querySelector(".arrow");
-
+function desktopClose(title, section, heading, ts) {
     let tl = gsap.timeline()
-    tl.to(details, {duration: .4, height: "0"})
-      .to(gallery, {duration: .6,  height: "50%"})
+    tl.to(gallery, {duration: .6,  height: "50%"})
       .to(section, {duration: .6, width: "25%", scrollTo: "0"}, "<")
+      .to(title, {duration: .6, height: "20px", onComplete: headingActive, onCompleteParams: [heading]}, "<")
       .set(section, {overflow: "hidden", onComplete: function() {gsap.set(this.targets(), {clearProps: "all"})}})
-      .to(container, {duration: .6, xPercent: scrollWidth * ts.progress})
-      .set(arrow, {yPercent: 200});
-
+      .to(container, {duration: .6, xPercent: scrollWidth * ts.progress});
     return tl;
 }
 
@@ -162,63 +141,45 @@ function mobileScroll(section) {
     return tl;
 }
 
-function mobileOpen(section) {
-    let details = section.querySelector(".details"),
-        close = section.querySelector(".btn-close-panel"),
-        arrow = section.querySelector(".arrow");
-
+function mobileOpen(title, section, heading) {
     let tl = gsap.timeline();
     tl.to(gallery, {duration: .6, overflow: "hidden", height: "90%"}) //disables the scroll(instantantly(.set)) and changes the height
       .to(section, {duration: .6, height: "100.5%", overflow: "scroll"}, "<") //set the panel height to fill the entire gallery and enables scrolling on it
-      .to(gallery, {duration: .6, scrollTo: section}, "<")//scrolls to panel while height is changed, ensuring title is at top of gallery
-      .to(details, {duration: .4, height: "auto"})
+      .to(title, {duration: .4, height: "auto", onStart: headingActive, onStartParams: [heading]}) //expands the title section, which causes scrolling problems
       .to(gallery, {duration: .4, scrollTo: section}, "<") //scrolls to the title while it expands, looking as if it's not moving
-      .to(arrow, {duration: .4, yPercent: 0}, "-=0.3")
-      .to(close, {duration: .4, scale: 1, rotation: 360})
     return tl;
 }
 
 // ----- panel closing function for mobile ----
 
-function mobileClose(section) {
-    let details = section.querySelector(".details"),
-        close = section.querySelector(".btn-close-panel"),
-        arrow = section.querySelector(".arrow");
-
-
+function mobileClose(title, section, heading) {
     let tl = gsap.timeline();
-    tl.to(close, {duration: .4, scale: 0, rotation: "0"})
-      .to(gallery, {duration: .6,  height: "50%"})
-      .to(details, {duration: .6, height: "0"}, "<")
+    tl.to(gallery, {duration: .6,  height: "50%"})
+      .to(title, {duration: .6, height: "20px", onComplete: headingActive, onCompleteParams: [heading]}, "<")
       .to(section, {duration: .6, height: "50%", scrollTo: "0"}, "<")
-      .set(arrow, {yPercent: 200})
       .set(gallery, {overflow: "scroll"})
       .set(section, {overflow: "hidden", onComplete: function() {gsap.set(this.targets(), {clearProps: "all"})}})
     return tl;
 
 }
 
-//----- toggling 
-
-function detailsToggle(section) {
-    let detailsText = section.querySelector(".details-text");
-        arrow = section.querySelector(".arrow");
 
 
 
-    let tl = gsap.timeline({defaults: {duration: .4}})
 
-    if(detailsText.offsetHeight != 0) {//checks if the details-text is "hidden"(height set to 0)
-        tl.to(detailsText, {height: "0"})
-          .to(arrow, {rotation: 180}, "<")
-          .to(gallery, {scrollTo: section}, "<")
-    } 
-    
-    else {//but if its set to 0 add titleOpen tweens to master timeline
-        tl.to(detailsText, {height: "auto"})
-          .to(arrow, {rotation: 0}, "<")
-          .to(gallery, {scrollTo: section}, "<")
-    }
+
+
+function titleOpen(title, section, heading) {
+    let tl = gsap.timeline()
+    tl.to(title, {duration: .4, height: "200px", onStart: headingActive, onStartParams: [heading]})
+    .to(gallery, {duration: .4, scrollTo: section}, "<")
+    return tl;
+}
+
+function titleClose(title, section, heading) {
+    let tl = gsap.timeline()
+    .to(title, {duration: .4, height: "20px", onComplete: headingActive, onCompleteParams: [heading]})
+    .to(gallery, {duration: .4, scrollTo: section}, "<")
     return tl;
 }
 
