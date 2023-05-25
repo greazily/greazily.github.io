@@ -223,7 +223,7 @@ canvas {
 }
 
 .details-text {
-    margin: var(--main-padding-height) var(--main-padding-width) calc(var(--main-padding-height) * 2) var(--main-padding-width);
+    margin: var(--main-padding-height) var(--main-padding-width) calc(var(--main-padding-height) * 1.6) var(--main-padding-width);
     height: auto;
     overflow: hidden;
 }

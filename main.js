@@ -214,13 +214,13 @@ function detailsToggle(section) {
     let tl = gsap.timeline({defaults: {duration: .4}})
 
     if(detailsText.offsetHeight != 0) {//checks if the details-text is "hidden"(height set to 0)
-        tl.to(detailsText, {height: "0", marginTop: "0"})
+        tl.to(detailsText, {height: "0", marginTop: "0", marginBottom: "0"})
           .to(arrow, {rotation: 180}, "<")
           .to(gallery, {scrollTo: section}, "<")
     } 
     
     else {//but if its set to 0 add titleOpen tweens to master timeline
-        tl.to(detailsText, {height: "auto", marginTop: "1.3rem"})//needs to be manually set to the same value as --main-padding-width
+        tl.to(detailsText, {height: "auto", marginTop: "1.1rem", marginBottom: "2.2rem"})//needs to be manually set to the same value as --main-padding-width
           .to(arrow, {rotation: 0}, "<")
           .to(gallery, {scrollTo: section}, "<")
     }
