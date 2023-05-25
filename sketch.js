@@ -46,10 +46,10 @@ class Ball {
       this.pos.x = width-this.radius - this.strW;
       this.vel.x = -this.vel.x * 0.95;
     }
-    // if (this.pos.y < this.radius + this.strW) {
-    //   this.pos.y = this.radius + this.strW;
-    //   this.vel.y = -this.vel.y * 0.95;
-    // }
+    if (this.pos.y < this.radius + this.strW) {
+      this.pos.y = this.radius + this.strW;
+      this.vel.y = -this.vel.y * 0.95;
+    }
     if (this.pos.y > height-this.radius - this.strW) {
       this.pos.y = height-this.radius - this.strW;
       this.vel.y = -this.vel.y;
