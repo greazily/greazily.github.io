@@ -6,7 +6,7 @@ import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
 
 function main() {
     const canvas = document.querySelector('#c');
-    const renderer = new THREE.WebGLRenderer({antialias: true, canvas});
+    const renderer = new THREE.WebGLRenderer({antialias: true, canvas, alpha: true});
     const btnTop = document.getElementById('btnTop').addEventListener('click', clicked);
     const btnBottom = document.getElementById('btnBottom').addEventListener('click', clicked);
     let frames;
@@ -19,13 +19,13 @@ function main() {
 
  //<---------------------------------------------------------------->  
     // camera settings
-    const fov = 50; // field of view (vertical)
+    const fov = 10; // field of view (vertical)
     const aspect = 0.6;  // the canvas default
     const near = 0.1;
-    const far = 200;
+    const far = 250;
     // creates a new (perspective) camera
     const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-    camera.position.set( 0, 2, 45);
+    camera.position.set( 0, 2, 230);
     console.log(camera)
  //<----------------------------------------------------------------> 
  
@@ -37,7 +37,6 @@ function main() {
     renderer.toneMappingExposure = 1.25;
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-
  
 
     // let geomerty;
@@ -201,7 +200,7 @@ function main() {
             // console.log(light.position.x);
             angle -= 0.015
             light.position.x = 30 * Math.sin(angle);
-            light.position.y = 30 * Math.cos(angle);
+            light.position.y = 40 + (20 * Math.cos(angle));
             // The draw or time dependent code are here
 
             // runs through the morphtarget frames 0 - 600
