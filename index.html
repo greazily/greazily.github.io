@@ -2,263 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Working</title>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/Flip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollToPlugin.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/platform/1.3.6/platform.min.js" integrity="sha512-eYPrm8TgYWg3aa6tvSRZjN4v0Z9Qx69q3RhfSj+Mf89QqwOMqmwSlsVqfp4N8NVAcZe/YeUhh9x/nM2CAOp6cA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.js"></script>
-
-    
-  
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <title>Inflation - Three.js</title>
 </head>
 <body>
+
+  <div class="threeContainer">
+    <canvas id="c"></canvas>
+
+    <div class="btnContainer">
+      <div id="btnTop" class="btnMobile"></div>
+      <div id="btnBottom" class="btnMobile"></div>
+    </div>
+
+   
+
+  </div>
+
     
     
-        <div class="layout-rows">
-            <div class="header-grid">
-                    <div class="sketch" id="sketch"></div>
-                    <div class="trapezoid"></div>
-                    <div class="info">
-                            <p>I design</p>
-                            <p>Mostly graphics, but am known to do exstensive dabbling in other creative fields.</p>
-                            <div class="border"></div>
-                            <p>Contact info:</p>
-                            <p>+44(0)7534 714122</p>
-                    </div>
-                    
-                </div>
+    <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
 
-                <div class="gallery">
-                    
-                    <div class="container">
-                        <section class="panel" id="panel">
-                                <div class="title-drop">
-                                    <div class="title">
-                                        <div class="heading">
-                                            <p>Title</p>
-                                        </div>
-                                        <div class="btn-close-panel"> <img class="cross" src="https://upload.wikimedia.org/wikipedia/commons/2/27/Times_symbol_%282%29.svg" ></div>   
-                                    </div>
-                                    <div class="details">
-                                        <p class="details-text">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                                            Soluta hic nulla accusamus rerum numquam animi accusantium laborum sunt ab pariatur nam, 
-                                            voluptatibus quaerat perferendis debitis minima maiores? 
-                                            Esse, quisquam consequuntur.
-                                        </p>
-                                        <div class="btn-toggle-details"><img class="arrow" src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Black_triangle2.svg" alt=""></div>
-                                        <div class="border"></div>
-                                    </div>  
-                                </div>
-                                
-                                <img class="cover-image" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="">   
-                                <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="">   
-                                <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="">   
-                                <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="">   
-                                <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="">   
-                   
-                   
-                        </section>
-                        <section class="panel" id="panel">
-                                <div class="title-drop">
-                                    <div class="title">
-                                        <div class="heading">
-                                            Title
-                                        </div>
-                                        <div class="btn-close-panel"> <img class="cross" src="https://upload.wikimedia.org/wikipedia/commons/2/27/Times_symbol_%282%29.svg" ></div>   
-                                    </div>
-                                    <div class="details">
-                                        <p class="details-text">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                                            Soluta hic nulla accusamus rerum numquam animi accusantium laborum sunt ab pariatur nam, 
-                                            voluptatibus quaerat perferendis debitis minima maiores? 
-                                            Esse, quisquam consequuntur.
-                                        </p>
-                                        <div class="btn-toggle-details"><img class="arrow" src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Black_triangle2.svg" alt=""></div>
-                                        <div class="border"></div>
-                                    </div>  
-                                </div>
-
-                                <div style="width: 100%; height: 50vh"></div>
-                                
-                                <img class="cover-image" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="">   
-                                <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="">   
-                                <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="">   
-                                <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="">   
-                                <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="">   
-                   
-                   
-                        </section>
-                        <section class="panel" id="panel">
-                                <div class="title-drop">
-                                    <div class="title">
-                                        <div class="heading">
-                                            Title
-                                        </div>
-                                        <div class="btn-close-panel"> <img class="cross" src="https://upload.wikimedia.org/wikipedia/commons/2/27/Times_symbol_%282%29.svg" ></div>   
-                                    </div>
-                                    <div class="details">
-                                        <p class="details-text">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                                            Soluta hic nulla accusamus rerum numquam animi accusantium laborum sunt ab pariatur nam, 
-                                            voluptatibus quaerat perferendis debitis minima maiores? 
-                                            Esse, quisquam consequuntur.
-                                        </p>
-                                        <div class="btn-toggle-details"><img class="arrow" src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Black_triangle2.svg" alt=""></div>
-                                        <div class="border"></div>
-                                    </div>  
-                                </div>
-
-                                
-                                <img class="cover-image" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="">   
-                                <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="">   
-                                <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="">   
-                                <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="">   
-                                <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="">   
-                   
-                   
-                        </section>
-                        <section class="panel" id="panel">
-                                <div class="title-drop">
-                                    <div class="title">
-                                        <div class="heading">
-                                            Title
-                                        </div>
-                                        <div class="btn-close-panel"> <img class="cross" src="https://upload.wikimedia.org/wikipedia/commons/2/27/Times_symbol_%282%29.svg" ></div>   
-                                    </div>
-                                    <div class="details">
-                                        <p class="details-text">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                                            Soluta hic nulla accusamus rerum numquam animi accusantium laborum sunt ab pariatur nam, 
-                                            voluptatibus quaerat perferendis debitis minima maiores? 
-                                            Esse, quisquam consequuntur.
-                                        </p>
-                                        <div class="btn-toggle-details"><img class="arrow" src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Black_triangle2.svg" alt=""></div>
-                                        <div class="border"></div>
-                                    </div>  
-                                </div>
-
-                                <div style="width: 100%; height: 50vh"></div>
-                                
-                                <img class="cover-image" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="">   
-                                <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="">   
-                                <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="">   
-                                <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="">   
-                                <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="">   
-                   
-                   
-                        </section>
-                        <section class="panel" id="panel">
-                                <div class="title-drop">
-                                    <div class="title">
-                                        <div class="heading">
-                                            Title
-                                        </div>
-                                        <div class="btn-close-panel"> <img class="cross" src="https://upload.wikimedia.org/wikipedia/commons/2/27/Times_symbol_%282%29.svg" ></div>   
-                                    </div>
-                                    <div class="details">
-                                        <p class="details-text">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                                            Soluta hic nulla accusamus rerum numquam animi accusantium laborum sunt ab pariatur nam, 
-                                            voluptatibus quaerat perferendis debitis minima maiores? 
-                                            Esse, quisquam consequuntur.
-                                        </p>
-                                        <div class="btn-toggle-details"><img class="arrow" src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Black_triangle2.svg" alt=""></div>
-                                        <div class="border"></div>
-                                    </div>  
-                                </div>
-
-                                <div style="width: 100%; height: 50vh"></div>
-                                
-                                <img class="cover-image" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="">   
-                                <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="">   
-                                <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="">   
-                                <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="">   
-                                <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="">   
-                   
-                   
-                        </section>
-                        <section class="panel" id="panel">
-                                <div class="title-drop">
-                                    <div class="title">
-                                        <div class="heading">
-                                            Title
-                                        </div>
-                                        <div class="btn-close-panel"> <img class="cross" src="https://upload.wikimedia.org/wikipedia/commons/2/27/Times_symbol_%282%29.svg" ></div>   
-                                    </div>
-                                    <div class="details">
-                                        <p class="details-text">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                                            Soluta hic nulla accusamus rerum numquam animi accusantium laborum sunt ab pariatur nam, 
-                                            voluptatibus quaerat perferendis debitis minima maiores? 
-                                            Esse, quisquam consequuntur.
-                                        </p>
-                                        <!--  -->
-                                        <div class="btn-toggle-details"><img class="arrow" src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Black_triangle2.svg" alt=""></div>
-                                        <div class="border"></div>
-                                    </div>  
-                                </div>
-
-                                <div style="width: 100%; height: 50vh"></div>
-                                
-                                <img class="cover-image" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="">   
-                                <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="">   
-                                <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="">   
-                                <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="">   
-                                <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="">   
-                   
-                   
-                        </section>
-                        <section class="panel" id="panel">
-                                <div class="title-drop">
-                                    <div class="title">
-                                        <div class="heading">
-                                            Title
-                                        </div>
-                                        <div class="btn-close-panel"> <img class="cross" src="https://upload.wikimedia.org/wikipedia/commons/2/27/Times_symbol_%282%29.svg" ></div>   
-                                    </div>
-                                    <div class="details">
-                                        <p class="details-text">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                                            Soluta hic nulla accusamus rerum numquam animi accusantium laborum sunt ab pariatur nam, 
-                                            voluptatibus quaerat perferendis debitis minima maiores? 
-                                            Esse, quisquam consequuntur.
-                                        </p>
-                                        <div class="btn-toggle-details"><img class="arrow" src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Black_triangle2.svg" alt=""></div>
-                                        <div class="border"></div>
-                                    </div>  
-                                </div>
-
-                                <div style="width: 100%; height: 50vh"></div>
-                                
-                                <img class="cover-image" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="">   
-                                <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="">   
-                                <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="">   
-                                <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="">   
-                                <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" alt="">   
-                   
-                   
-                        </section>
-                        <section class="panel end"></section>
-                    </div>
-
-                </div>
-
-                
-
-
-        </div>
-        
-    
-                
-                <script src="main.js"></script>
-                <script src="sketch.js"></script>
+    <script type="importmap">
+        {
+            "imports": {
+              "three": "https://unpkg.com/three/build/three.module.js",
+              "three/addons/": "https://unpkg.com/three/examples/jsm/"
+            }
+          }
+    </script>
+    <script type="module" src="/js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,33 @@
+html, body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+    background-color: #a0a0a0;
+ }
+
+.threeContainer {
+   position: relative;
+}
+
+ #c {
+    width: 100%;
+    aspect-ratio: 0.6;
+    display: block;
+ }
+ 
+ .btnContainer {
+   width: 100%;
+   top: 12%;
+   gap: 45%;
+   position: absolute;
+   display: grid;
+   grid-template-rows: 1fr 1fr;
+
+ }
+
+ .btnMobile {
+   justify-self: center;
+   width: 80%;
+   height: 20vw;
+   /* background-color: brown; */
+ }
