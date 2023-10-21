@@ -1,39 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/main.css">
-    <title>Inflation - Three.js</title>
-</head>
-<body>
 
-  <div class="threeContainer">
-    <canvas id="c"></canvas>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="video-container">
+            <!-- <div class="gradient"></div> -->
+            <!-- <div style="padding:90.28% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/876667081?h=bbfedce232&autoplay=1&title=0&byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script> -->
+            <video src="Portfolio-Animation-Inflate-10-2528p.mp4" id="video-onload" class="video" autoplay muted></video>
+            <video src="" id="video-onclick" class="video"></video>
+            <div class="btn" id="btn-top"></div>
+            <div class="btn" id="btn-bottom"></div>
 
-    <div class="btnContainer">
-      <div id="btnTop" class="btnMobile"></div>
-      <div id="btnBottom" class="btnMobile"></div>
-    </div>
+        </div>
 
-    <div class=""></div>
 
-   
-
-  </div>
-
-    
-    
-    <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
-
-    <script type="importmap">
-        {
-            "imports": {
-              "three": "https://unpkg.com/three/build/three.module.js",
-              "three/addons/": "https://unpkg.com/three/examples/jsm/"
-            }
-          }
-    </script>
-    <script type="module" src="/js/main.js"></script>
-</body>
+        <script src="main.js" async defer></script>
+    </body>
 </html>
