@@ -3,17 +3,22 @@ function main(){
     const btnTop = document.getElementById('btn-top');
     const btnBottom = document.getElementById('btn-bottom');
 
-    const source = ['Portfolio-Animation-Bottom-Shorter.mp4', 'Portfolio-Animation-Top-Shorter.mp4' ]
 
     function btnCLick(e){
-        let video = document.getElementById('video-onclick');
+        let videoTop = document.getElementById('video-topclick');
+        let videoBottom = document.getElementById('video-bottomclick');
+        
         if(e.target.id == 'btn-top'){
-            video.setAttribute('src', source[1]);
-            video.play();
+            videoBottom.style.zIndex = '-10'
+            videoTop.style.zIndex = '10';
+            videoTop.currentTime = 0;
+            videoTop.play();
         } else {
-            console.log(e.target.id == 'btn-top');
-            video.setAttribute('src', source[0]);
-            video.play();
+            // console.log(e.target.id == 'btn-top');
+            videoTop.style.zIndex = '-10';
+            videoBottom.style.zIndex = '10';
+            videoBottom.currentTime = 0;
+            videoBottom.play();
         }
 
     }
