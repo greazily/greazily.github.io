@@ -5,20 +5,19 @@ function main(){
 
 
     function btnCLick(e){
-        let videoTop = document.getElementById('video-topclick');
-        let videoBottom = document.getElementById('video-bottomclick');
+        let clickTop = document.getElementById('click-top');
+        let clickBottom = document.getElementById('click-bottom');
         
         if(e.target.id == 'btn-top'){
-            videoBottom.style.zIndex = '-10'
-            videoTop.style.zIndex = '10';
-            videoTop.currentTime = 0;
-            videoTop.play();
+            clickTop.currentTime = 0;
+            clickBottom.classList.add('invisible');
+            clickTop.classList.remove('invisible');
+            clickTop.play();
         } else {
-            // console.log(e.target.id == 'btn-top');
-            videoTop.style.zIndex = '-10';
-            videoBottom.style.zIndex = '10';
-            videoBottom.currentTime = 0;
-            videoBottom.play();
+            clickBottom.currentTime = 0;
+            clickTop.classList.add('invisible');
+            clickBottom.classList.remove('invisible');
+            clickBottom.play();
         }
 
     }
