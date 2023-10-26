@@ -11,18 +11,43 @@
     </head>
     <body>
         <!-- <img src="4096-Noise.png" alt="" class="noise"> -->
-        
-        <div class="video-container">
-
-            <video src="Video-Onload.mp4" id="video-onload" class="video" autoplay muted></video>
-            <video src="Video-Onclick-Btn-Top.mp4" id="click-top" class="video click invisible" muted></video>
-            <video src="Video-Onclick-Btn-Bottom.mp4" id="click-bottom" class="video click invisible" muted></video>
-            <div class="btn" id="btn-top"></div>
-            <div class="btn" id="btn-bottom"></div>
+        <div class="scrl">
+            <div class="wrp">
+                <div class="vid-wrp">
+                    <div class="vid-btn-wrp">
             
+                        <video src="Video-Onload.mp4" id="vid-btn-onld" class="vid" autoplay muted></video>
+                        <video src="Video-Onclick-Btn-Top.mp4" id="vid-btn-t" class="vid vid-btn" muted></video>
+                        <video src="Video-Onclick-Btn-Bottom.mp4" id="vid-btn-b" class="vid vid-btn" muted></video>
+                        
+                        
+                        
+                    </div>
+                    <video src="Video-Background.mp4" class="vid-bg" autoplay muted></video>
+                    <div class="btn" id="btn-t"></div>
+                    <div class="btn" id="btn-b"></div>
+        
+        
+                </div>
+    
+            </div>
+    
+            
+    
+            <div class="con-wrp" id="con-wrp">
+                <div class="con" id="con-wrk"></div>
+                <div class="con" id="con-abt"></div>
+            </div>
             
         </div>
-        <video src="Video-Background-1196-11.mp4" class="still" autoplay muted></video>
+
+        <!-- gsap dependencies -->
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/CustomEase.min.js"></script>
+
+        <!-- custom script -->
 
 
         <script src="main.js" async defer></script>

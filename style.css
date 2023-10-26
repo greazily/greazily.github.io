@@ -1,30 +1,50 @@
+:root {
+    --vh: 0;
+}
 body, html {
     margin: 0;
-    /* background-color: rgba(6,5,6,1); */
+    background-color: #090909;
 }
 
-.video-container {
-    width: 27.5%;
+.wrp {
+    width: auto;
+    height: 100lvh;
+    overflow: hidden;
+
+}
+
+.vid-wrp {
+    top: max(calc(10000/(var(--vh)) * -20px), -300px);
+    width: 100%;
+    height: calc((10000/(var(--vh)) * 20px) + 100vh);
+    overflow: hidden;
     position: relative;
-    top: calc(100vw/12.7);
-    margin: auto;
     
 }
 
-.video {
-    width: 100%;
+.vid-btn-wrp {
+    margin-left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 100%;
     position: absolute;
-    /* mask-image: url(halftone-mask.svg); */
-    /* -webkit-mask-image: url(halftone-mask.svg); */
+    top: 310px;
+
+
     
-
-
 }
 
-.still {
-    position: absolute;
-    top: calc(-1*(100vw/15.184));
+.vid {
     width: 100%;
+    position: absolute;
+}
+
+.vid-bg {
+    position: absolute;
+    top: 0;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    width: 2160px;
     z-index: 2;
     mask-image: url(bg-mask.png);
     -webkit-mask-image: url(bg-mask.png);
@@ -35,29 +55,43 @@ body, html {
     filter: blur(7px);
 }
 
-.click {
+.vid-btn {
     z-index: 1;
+    visibility: hidden;
 }
-
-.invisible {
-    opacity: 0;
-}
-
-
-
 
 .btn {
     position: absolute;
-    top: calc(100vw * 0.01);
-    right: 50%;
-    transform: translateX(50%);
-    z-index: 20;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    top: 332px;
+    z-index: 100;
     /* background-color: rgba(255,0,0,0.2); */
     background-color: transparent;
-    width: 14vw;
-    height: calc(100vw/23);
+    width: 310px;
+    height: 97px;
 }
 
-#btn-bottom {
-    top: calc(100vw * 0.066);
+#btn-b {
+    top: 456px;
+}
+
+.con-wrp {
+    position: relative;
+    width: 100vw;
+    height: 100lvh;
+    background-color: red;
+    display: none;
+}
+
+.con {
+    width: 50%;
+    height: 20%;
+    background-color: aqua;
+    display: none;
+
+}
+
+#con-wrk {
+    background-color: blueviolet;
 }
