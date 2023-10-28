@@ -1,32 +1,40 @@
 gsap.registerPlugin(ScrollToPlugin, CustomEase);
 
 function main(){
-    let height = 0;
+    let landHeight = 0;
 
     function viewHeight() {
-        height = window.innerHeight;
-        document.documentElement.style.setProperty('--vh', height);
-    }
+        landHeight = document.getElementById('land').clientHeight;
+        let windowHeight = innerHeight;
+        document.documentElement.style.setProperty('--vh', windowHeight);
+
+        console.log(landHeight);
+    };
+
     function display(x) {
-        const contentWrapper = document.getElementById('con-wrp');
-        const content = ['con-abt', 'con-wrk'];
+        const contentWrapper = document.getElementById('contain');
+        const content = ['about', 'work'];
 
-        contentWrapper.style.display = 'block';
+        contentWrapper.style.display = 'flex';
         let activeContent = document.getElementById(content[x]);
-        activeContent.style.display = 'block';
+        activeContent.style.display = 'flex';
 
-        gsap.to('.scrl', { 
-            delay: 1,
-            duration: 2.5,
-            y: -height,
-            ease: "back.inOut(1)",
+        scroll();   
+
+    };
+
+    function scroll() {
+        gsap.to('.scroll', { 
+            delay: 1.3,
+            duration: 4,
+            y: -landHeight,
+            ease: "power4.inOut",
         });
-        
-        
 
-    }
+    };
 
     viewHeight();
+
     window.addEventListener('resize', viewHeight);
     
     document.querySelectorAll('.btn').forEach((btn, index) =>{

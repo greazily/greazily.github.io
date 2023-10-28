@@ -4,20 +4,24 @@
 body, html {
     margin: 0;
     background-color: #090909;
+    overflow: hidden;
 }
 
-.wrp {
+.land {
     width: auto;
-    height: 100lvh;
-    overflow: hidden;
+    height: 1950px;
+    overflow: visible;
 
 }
 
-.vid-wrp {
+.interact {
+    margin-left: 50%;
+    transform: translateX(-50%);
     top: max(calc(10000/(var(--vh)) * -20px), -300px);
-    width: 100%;
-    height: calc((10000/(var(--vh)) * 20px) + 100vh);
-    overflow: hidden;
+    width: 2160px;
+    /* height: calc((10000/(var(--vh)) * 20px) + 100vh); */
+    height: 1950px;
+    /* overflow: visible; */
     position: relative;
     
 }
@@ -26,17 +30,21 @@ body, html {
     margin-left: 50%;
     transform: translateX(-50%);
     width: 600px;
-    height: 100%;
+    height: auto;
     position: absolute;
     top: 310px;
-
-
-    
 }
 
 .vid {
     width: 100%;
+}
+
+.vid-btn {
+    z-index: 1;
+    visibility: hidden;
     position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .vid-bg {
@@ -45,20 +53,18 @@ body, html {
     margin-left: 50%;
     transform: translateX(-50%);
     width: 2160px;
+    height: auto;
     z-index: 2;
-    mask-image: url(bg-mask.png);
-    -webkit-mask-image: url(bg-mask.png);
+    mask-image: url(mask-bottom.png);
+    -webkit-mask-image: url(mask-bottom.png);
     mask-position: center;
     -webkit-mask-position: 50% 20%;
     mask-size: 100%;
     -webkit-mask-size: 100%;
-    filter: blur(7px);
+    filter: blur(10px);
 }
 
-.vid-btn {
-    z-index: 1;
-    visibility: hidden;
-}
+
 
 .btn {
     position: absolute;
@@ -76,22 +82,64 @@ body, html {
     top: 456px;
 }
 
-.con-wrp {
+.contain {
     position: relative;
     width: 100vw;
     height: 100lvh;
-    background-color: red;
+    background-color: transparent;
     display: none;
+    overflow: scroll;
 }
 
-.con {
-    width: 50%;
-    height: 20%;
+.content {
+    display: none;
+    width: 70%;
+    /* margin: auto; */
+
+}
+
+.about {
     background-color: aqua;
-    display: none;
+    
 
 }
 
-#con-wrk {
-    background-color: blueviolet;
+.work {
+    height: 100%;
+    width: 100%;
+    /* background-color: blueviolet; */
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
+    align-content: flex-start;
 }
+
+
+.project .cover {
+    width: 340px;
+    height: 200px;
+    background-color: aqua;
+
+}
+
+.project .title {
+    /* width: auto; */
+    margin-left: 50%;
+    transform: translateX(-50%);
+    font-family: Arial, Helvetica, sans-serif;
+    color: beige;
+
+}
+
+@media (min-width: 730px) {
+
+    .work {
+        height: auto;
+        width: 1200px;
+        align-content: center;
+        margin: auto;
+    }
+    
+  }
+  
