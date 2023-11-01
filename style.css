@@ -95,6 +95,7 @@ body, html {
     display: none;
     width: 70%;
     /* margin: auto; */
+    overflow-x: hidden;
 
 }
 
@@ -113,24 +114,58 @@ body, html {
     justify-content: center;
     gap: 3rem;
     align-content: flex-start;
+    overflow: visible;
+}
+
+.project {
+    position: relative;
+    width: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    overflow: visible;
+    
+}
+
+.vid-btn-p {
+    z-index: -1;
+    position: absolute;
+    width: 450px;
+    mask-image: linear-gradient(rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%);
+    -webkit-mask-image: linear-gradient(rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%);
 }
 
 
 .project .cover {
-    width: 340px;
-    height: 200px;
+    width: 339px;
+    height: 199px;
     background-color: aqua;
+    border-radius: 1.5rem;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    mix-blend-mode: overlay;
+    box-shadow: 0 0 1px 1px #090909 inset;
 
 }
+
+
 
 .project .title {
-    /* width: auto; */
-    margin-left: 50%;
-    transform: translateX(-50%);
     font-family: Arial, Helvetica, sans-serif;
-    color: beige;
+    color: #cccccc;
+    text-transform: uppercase;
+    
 
 }
+
+#p1 {
+    background-image: url('Billboard-Mockup.jpg');
+    
+}
+
+
 
 @media (min-width: 730px) {
 

@@ -11,12 +11,12 @@ function main(){
         console.log(landHeight);
     };
 
-    function display(x) {
+    function display(selected) {
         const contentWrapper = document.getElementById('contain');
         const content = ['about', 'work'];
 
         contentWrapper.style.display = 'flex';
-        let activeContent = document.getElementById(content[x]);
+        let activeContent = document.getElementById(content[selected]);
         activeContent.style.display = 'flex';
 
         scroll();   
@@ -26,36 +26,58 @@ function main(){
     function scroll() {
         gsap.to('.scroll', { 
             delay: 1.3,
-            duration: 4,
+            duration: 3.5,
             y: -landHeight,
             ease: "power4.inOut",
         });
 
     };
 
-    viewHeight();
+    function landingButtons() {
+        document.querySelectorAll('.btn').forEach((btn, clicked) =>{
 
-    window.addEventListener('resize', viewHeight);
+            const buttons = ['vid-btn-t', 'vid-btn-b']
+
+            btn.addEventListener('click', ()=> {
+                document.querySelectorAll('.vid-btn').forEach((video)=>{
+                    video.style.visibility = 'hidden'; // Get this to only hide the unselected button
+                    video.currentTime = 0;
+                })
+                let button = document.getElementById(buttons[clicked]);
+                button.style.visibility = 'visible';
+                button.play();     
+                display(clicked);
+            });
     
-    document.querySelectorAll('.btn').forEach((btn, index) =>{
-        const buttons = ['vid-btn-t', 'vid-btn-b'];
-        
-
-
-        
-
-        btn.addEventListener('click', ()=> {
-            document.querySelectorAll('.vid-btn').forEach((video)=>{
-                video.style.visibility = 'hidden'; // Get this to only hide the unselected button
-                video.currentTime = 0;
-            })
-            let button = document.getElementById(buttons[index]);
-            button.style.visibility = 'visible';
-            button.play();     
-            display(index);
         });
 
-    });
+    };
+
+    function projectButtons() {
+        document.querySelectorAll('.project').forEach((prj, clicked) =>{
+
+            const projects = ['p1', 'p2', 'p3'];
+
+            prj.addEventListener('click', (e)=> {
+                console.log(e.currentTarget.querySelector('.vid-btn-p'));
+                let button = e.currentTarget.querySelector('.vid-btn-p');
+                button.currentTime = 0;
+                button.play(); 
+
+            });
+
+        });
+    };
+
+    viewHeight();
+    landingButtons();
+    projectButtons();
+
+    window.addEventListener('resize', viewHeight);
+
+
+    
+   
 
 };
 
