@@ -1,36 +1,66 @@
-gsap.registerPlugin(ScrollToPlugin, CustomEase);
-
 function main(){
     let landHeight = 0;
+    let returning = localStorage.getItem('returning');
+
+
+    function fadeIn() {
+        gsap.to('.shade', { 
+            duration: 2, 
+            autoAlpha: 0, 
+            ease: 'power4.inOut', 
+        });
+    }
 
     function viewHeight() {
         landHeight = document.getElementById('land').clientHeight;
         let windowHeight = innerHeight;
         document.documentElement.style.setProperty('--vh', windowHeight);
+    };
 
-        console.log(landHeight);
+    function scroll(y) {
+        gsap.to('.scroll', { 
+            delay: .7,
+            duration: 3.5,
+            y: y,
+            ease: 'power4.inOut',
+            onComplete: close,
+            onCompleteParams: [y]
+        });
+    };
+
+    function close(y) {
+        if(y == 0) {
+            const work = document.getElementById('work');
+            const about = document.getElementById('about');
+            const contain = document.getElementById('contain');
+            about.style.display = 'none';
+            work.style.display = 'none';
+            contain.style.display = 'none';
+            console.log(work)
+        } else {
+            return;
+        }
+
     };
 
     function display(selected) {
         const contentWrapper = document.getElementById('contain');
         const content = ['about', 'work'];
-
         contentWrapper.style.display = 'flex';
         let activeContent = document.getElementById(content[selected]);
         activeContent.style.display = 'flex';
-
-        scroll();   
-
+        scroll(-landHeight);   
     };
 
-    function scroll() {
-        gsap.to('.scroll', { 
-            delay: 1.3,
-            duration: 3.5,
-            y: -landHeight,
-            ease: "power4.inOut",
+    function goToPage(x) {
+        let link = x;
+        gsap.to('.shade', {
+            delay: 1, 
+            duration: 1, 
+            autoAlpha: 1, 
+            ease: 'power4.inOut', 
+            onComplete: ()=> {window.location.href = link;}
         });
-
     };
 
     function landingButtons() {
@@ -39,6 +69,7 @@ function main(){
             const buttons = ['vid-btn-t', 'vid-btn-b']
 
             btn.addEventListener('click', ()=> {
+                // document.getElementById('scroll').setAttribute('overflow', 'visible');
                 document.querySelectorAll('.vid-btn').forEach((video)=>{
                     video.style.visibility = 'hidden'; // Get this to only hide the unselected button
                     video.currentTime = 0;
@@ -48,31 +79,58 @@ function main(){
                 button.play();     
                 display(clicked);
             });
-    
         });
-
     };
 
     function projectButtons() {
-        document.querySelectorAll('.project').forEach((prj, clicked) =>{
-
-            const projects = ['p1', 'p2', 'p3'];
-
+        document.querySelectorAll('.project').forEach((prj) =>{
             prj.addEventListener('click', (e)=> {
-                console.log(e.currentTarget.querySelector('.vid-btn-p'));
                 let button = e.currentTarget.querySelector('.vid-btn-p');
+                let link = button.dataset.link;
                 button.currentTime = 0;
-                button.play(); 
-
+                button.play();
+                goToPage(link);
             });
 
         });
     };
 
+    function returned() {
+        if(returning == 1){
+            const contentWrapper = document.getElementById('contain');
+            const work = document.getElementById('work');
+            const about = document.getElementById('about');
+            contentWrapper.style.display = 'flex';
+            work.style.display = 'flex';
+            about.style.display = 'none';
+            localStorage.setItem('returning', 0);
+            gsap.set('.scroll', { 
+                y: -landHeight,
+            });
+        };
+    };
+
+    function back() {
+        const back = document.querySelector('.back');
+        back.addEventListener('click', (e)=> {
+            let video = e.currentTarget.querySelector('.vid-btn-x');
+            video.currentTime = 0;
+            video.play();
+            scroll(0);
+
+        })
+
+
+    };
+
     viewHeight();
     landingButtons();
     projectButtons();
-
+    fadeIn();
+    returned();
+    back();
+    
+    
     window.addEventListener('resize', viewHeight);
 
 
@@ -81,39 +139,4 @@ function main(){
 
 };
 
-main();
-
-
-
-
-
-
-   // Old code ***********************************************
-   
-    // const btnTop = document.getElementById('btn-top');
-    // const btnBottom = document.getElementById('btn-bottom');
-
-
-    // function btnCLick(e){
-    //     const start = performance.now();
-    //     let clickTop = document.getElementById('click-top');
-    //     let clickBottom = document.getElementById('click-bottom');
-        
-    //     if(e.target.id == 'btn-top'){
-    //         clickTop.currentTime = 0;
-    //         clickBottom.classList.add('invisible');
-    //         clickTop.classList.remove('invisible');
-    //         clickTop.play();
-    //     } else {
-    //         clickBottom.currentTime = 0;
-    //         clickTop.classList.add('invisible');
-    //         clickBottom.classList.remove('invisible');
-    //         clickBottom.play();
-    //     }
-    //     const end = performance.now();
-    //     console.log('executed ' + (end-start));
-
-    // }
-
-    // btnTop.addEventListener('click', btnCLick);
-    // btnBottom.addEventListener('click', btnCLick);
+window.onload = main();
