@@ -1,8 +1,6 @@
 :root {
     --vh: 0;
     font-size: 17px;
-
-    /* font-family: 'ClashGrotesk-Regular'; */
 }
 body, html {
     margin: 0;
@@ -10,7 +8,7 @@ body, html {
     overflow: hidden;
     color: #cccccc;
     font-family: 'ClashGrotesk-Regular';
-    height: 100vh;
+    /* height: 100vh; */
 }
 
 h1 {
@@ -25,7 +23,6 @@ p {
     height: 100%;
     overflow: auto;
     line-height: 1.4rem;
-
 }
 
 .shade {
@@ -38,9 +35,29 @@ p {
 }
 
 .land {
+    position: relative;
     width: auto;
     height: 1950px;
     overflow: visible;
+}
+
+.name {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    z-index: 200;
+    opacity: 0.7;
+    top: 0;
+    height: calc(var(--vh)*1px);
+}
+
+.name > h1 {
+    color: black;
+    position: absolute;
+    font-family: 'ClashGrotesk-Semibold';
+    font-size: 17px;
+    bottom: 0;
 }
 
 .interact {
@@ -91,8 +108,6 @@ p {
     filter: blur(10px);
 }
 
-
-
 .btn {
     position: absolute;
     margin-left: 50%;
@@ -115,10 +130,12 @@ p {
 }
 
 .contain {
+    width: 100%;
     position: relative;
     background-color: transparent;
     display: none;
-    overflow: visible;
+    overflow-x: hidden;
+    overflow-y: scroll;
     align-items: center;
     flex-direction: column;
 }
@@ -155,20 +172,18 @@ li {
 }
 
 .work {
-    height: 100%;
-    width: 100%;
-    flex-direction: row;
-    flex-wrap: wrap;
+    grid-template-columns: 1fr;
+    width: auto;
     justify-content: center;
-    gap: 3rem;
-    align-content: flex-start;
+    gap: 2rem;
     overflow: visible;
     z-index: 10;
+    margin-top: 2rem;
 }
 
 .project {
     position: relative;
-    width: 382px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -176,10 +191,11 @@ li {
     overflow: visible;
 }
 
+
 .vid-btn-p {
     z-index: -1;
     position: absolute;
-    width: 505px;
+    width: 470px;
     mask-image: linear-gradient(rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%);
     -webkit-mask-image: linear-gradient(rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%);
 }
@@ -203,32 +219,26 @@ li {
     width: 100px;
 }
 
-
-.project .cover {
-    width: 382px;
-    height: 227px;
+.cover {
+    width: 353px;
+    height: 210px;
     background-color: aqua;
-    border-radius: 1.5rem;
-    background-position: left -7px;
+    border-radius: 1.3rem;
     background-repeat: no-repeat;
-    background-size: 140%;
     mix-blend-mode: overlay;
     box-shadow: 0 0 1px 1px #090909 inset;
     display: flex;
     align-items: center;
     justify-content: center;
-    filter: contrast(80%);
     cursor: pointer;
 }
-
-
 
 .project .title {
     color: #cccccc;
     text-transform: uppercase;
     font-size: 24px;
     position: absolute;
-    top: calc(227px/2);
+    top: calc(210px/2);
     transform: translateY(-50%);
     mix-blend-mode: overlay;
     cursor: pointer;
@@ -237,21 +247,61 @@ li {
 
 #p1 {
     background-image: url('Billboard-Mockup.jpg');
-    
+    background-size: 140%;
+    background-position: left -7px;
+    filter: contrast(80%);
 }
-
-
-
 
 @media (min-width: 730px) {
     .work {
-        height: auto;
-        width: 1250px;
-        align-content: center;
+        grid-template-columns: 1fr 1fr;
+
     }  
+
+    .project {
+        width: 353px;
+    }
+
+
+  }
+
+  @media (min-width: 1350px) {
+    .work {
+        /* width: 1250px; */
+        /* padding: 0 3rem 0 3rem; */
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 3rem;
+
+    }
 
     .contain {
         margin: auto;
+        overflow: visible;
+    }
+
+    .vid-btn-p {
+        width: 503px;
+
+    }
+
+    .project {
+        width: 382px;
+
+    }
+
+    .project:first-child {
+        margin-top: 0;
+    }
+
+    .cover {
+        border-radius: 1.5rem;
+        width: 382px;
+        height: 227px;
+    }
+
+    .title {
+        top: calc(227px/2);
+
     }
   }
   

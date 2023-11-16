@@ -1,23 +1,56 @@
+gsap.registerPlugin(ScrollToPlugin);
+
 function main(){
-    let landHeight = 0;
     let returning = localStorage.getItem('returning');
 
 
     function fadeIn() {
         gsap.to('.shade', { 
-            duration: 2, 
+            duration: 1, 
             autoAlpha: 0, 
             ease: 'power4.inOut', 
         });
     }
 
     function viewHeight() {
-        landHeight = document.getElementById('land').clientHeight;
+        let backgroundHeight = document.getElementById('vid-bg').clientHeight;
+        let workHeight = document.getElementById('work').clientHeight;
         let windowHeight = innerHeight;
+        let projectHeight = document.querySelector('.project').clientHeight;
+
+        document.documentElement.style.setProperty('--ph', projectHeight + 'px');
+        document.documentElement.style.setProperty('--wh', workHeight + 'px');
+        document.documentElement.style.setProperty('--bgh', backgroundHeight);
         document.documentElement.style.setProperty('--vh', windowHeight);
+        console.log(document.documentElement.style.getPropertyValue('--ph'));
+        // return backgroundHeight;
+        return workHeight;
     };
 
+    function resetScroll() {
+        const buttons = ['vid-btn-t', 'vid-btn-b'];
+        buttons.forEach((btn)=>{
+            let x = document.getElementById(btn);
+            console.log(x);
+            x.style.visibility = 'hidden';
+        });
+        const load = document.getElementById('vid-btn-onld');
+        load.style.visibility = 'visible';
+        load.currentTime = 0;
+        load.play();
+        gsap.to('.wrapper', {
+            duration: 1.8,
+            scrollTo: 0,
+            ease: 'power1.inOut',
+        });
+
+    }
+
     function scroll(y) {
+        viewHeight();
+        if(y == 0) {
+            resetScroll();
+        }
         gsap.to('.scroll', { 
             delay: .7,
             duration: 3.5,
@@ -44,18 +77,18 @@ function main(){
     };
 
     function display(selected) {
-        const contentWrapper = document.getElementById('contain');
+        const contain = document.getElementById('contain');
         const content = ['about', 'work'];
-        contentWrapper.style.display = 'flex';
+        contain.style.display = 'grid';
         let activeContent = document.getElementById(content[selected]);
-        activeContent.style.display = 'flex';
-        scroll(-landHeight);   
+        activeContent.style.display = 'grid';
+        scroll(-2800);   
     };
 
     function goToPage(x) {
         let link = x;
         gsap.to('.shade', {
-            delay: 1, 
+            delay: .7, 
             duration: 1, 
             autoAlpha: 1, 
             ease: 'power4.inOut', 
@@ -65,11 +98,8 @@ function main(){
 
     function landingButtons() {
         document.querySelectorAll('.btn').forEach((btn, clicked) =>{
-
             const buttons = ['vid-btn-t', 'vid-btn-b']
-
             btn.addEventListener('click', ()=> {
-                // document.getElementById('scroll').setAttribute('overflow', 'visible');
                 document.querySelectorAll('.vid-btn').forEach((video)=>{
                     video.style.visibility = 'hidden'; // Get this to only hide the unselected button
                     video.currentTime = 0;
@@ -97,15 +127,15 @@ function main(){
 
     function returned() {
         if(returning == 1){
-            const contentWrapper = document.getElementById('contain');
+            const contain = document.getElementById('contain');
             const work = document.getElementById('work');
             const about = document.getElementById('about');
-            contentWrapper.style.display = 'flex';
-            work.style.display = 'flex';
+            contain.style.display = 'grid';
+            work.style.display = 'grid';
             about.style.display = 'none';
             localStorage.setItem('returning', 0);
             gsap.set('.scroll', { 
-                y: -landHeight,
+                y: -2800,
             });
         };
     };
@@ -117,18 +147,14 @@ function main(){
             video.currentTime = 0;
             video.play();
             scroll(0);
-
         })
-
-
     };
-
-    viewHeight();
     landingButtons();
     projectButtons();
     fadeIn();
     returned();
     back();
+    viewHeight();
     
     
     window.addEventListener('resize', viewHeight);
